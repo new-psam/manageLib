@@ -1,0 +1,28 @@
+
+tsconfig
+
+Este código é um arquivo de configuração do TypeScript chamado tsconfig.json. Ele define as opções para o compilador do TypeScript (tsc) ao compilar seu código-fonte (.ts) para JavaScript (.js).
+
+compilerOptions
+Esta seção contém as principais diretivas de compilação:
+
+target: "ES2020": Indica que o código JavaScript final será compatível com a versão ES2020 (ECMAScript 2020). Isso permite usar recursos modernos da linguagem, como Promise.allSettled e String.prototype.matchAll, sem precisar de uma biblioteca de polifill.
+
+module: "CommonJS": Define o sistema de módulos que o compilador irá usar no JavaScript gerado. CommonJS é o sistema de módulos padrão do Node.js, usando require() para importar e module.exports para exportar.
+
+outDir: "dist": Especifica o diretório de saída para os arquivos JavaScript compilados. Todos os arquivos .js serão colocados na pasta dist após a compilação.
+
+rootDir: "src": Define o diretório raiz do código-fonte TypeScript. O compilador usa isso para manter a estrutura de diretórios do código-fonte no diretório de saída.
+
+strict: true: Habilita um conjunto de verificações de tipo rigorosas, como noImplicitAny (não permite variáveis do tipo any implicitamente) e strictNullChecks (força a verificação de valores null e undefined). Usar strict: true é uma boa prática, pois ajuda a evitar muitos erros em tempo de execução.
+
+esModuleInterop: true: Permite a interoperabilidade entre os módulos do CommonJS e os módulos ES6. Com essa opção, você pode usar a sintaxe import (ES6) para importar módulos do CommonJS (que usam require()), tornando o código mais limpo e consistente.
+
+moduleResolution: "node": Informa ao compilador como encontrar os módulos importados. A opção "node" imita a lógica de resolução de módulos do Node.js, procurando por pacotes no diretório node_modules.
+
+skipLibCheck: true: Pula a verificação de tipo de todos os arquivos de declaração (.d.ts) de bibliotecas de terceiros (node_modules). Isso acelera a compilação, pois assume que as bibliotecas instaladas já foram devidamente verificadas.
+
+include
+include: ["src"]: Define quais arquivos o compilador deve incluir na compilação. Neste caso, ele irá processar todos os arquivos dentro do diretório src.
+
+----------------------------------------
