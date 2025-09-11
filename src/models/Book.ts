@@ -1,17 +1,17 @@
-import { SendHandle } from 'child_process';
-import mongoose, { Schema, Document } from 'mongoose';
-import { maxLength, minSize } from 'zod';
-import { required } from 'zod/v4/core/util.cjs';
+
+import mongoose, { Schema, Document, model, Types } from 'mongoose';
+
+
 
 export interface IBook extends Document {
     title: string;
     author: string;
     isbn: string;
     year: number;
-    publisher?: mongoose.Types.ObjectId; 
+    publisherName?: Types.ObjectId; 
 }
 
-const BookSchema: Schema = new Schema(
+const bookSchema = new Schema<IBook>(
     {
     title: {type: String, required: true, maxLength: 150},
     author: {type: String, required: true },
@@ -22,9 +22,9 @@ const BookSchema: Schema = new Schema(
         min: 1000,
         max: new Date().getFullYear()
     },
-    publisher: {type: Schema.Types.ObjectId, ref: "Publisher" },
+    publisherName: {type: Schema.Types.ObjectId, ref: "PublisherName", required: true }
     },
     { timestamps: true}
 );
 
-export const Book = mongoose.model<IBook>("Book", BookSchema);
+export const Book = model<IBook>("Book", bookSchema);
